@@ -1,0 +1,102 @@
+
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class Main {
+    Node head;
+    public void insertBegin(int data)// insert at begin 
+    {
+        Node newnode=new Node(data);
+        if(head==null){
+            head=newnode;
+        }
+        else{
+            newnode.next=head;
+            head=newnode;
+        }
+    }
+    public void insertEnd(int data)// insert at last
+    {
+        Node newnode=new Node(data);
+        if(head==null){
+            head=newnode;
+        }
+        else{
+            Node current=head;
+            while(current.next!=null){
+                current=current.next;
+            }
+            current.next=newnode;
+        }
+    }
+    public void insertAtPosition(int data,int pos){
+        Node newnode=new Node(data);
+        if(pos==0){
+            newnode.next=head;
+            head=newnode;
+            return;
+        }
+        Node current=head;
+        int index=0;
+        while(current!=null && index < pos-1){
+            current=current.next;
+            index++;
+        }
+        newnode.next=current.next;
+        current.next=newnode;
+    }
+    public void deleteBeg(){
+        Node current;
+        current=head.next;
+        head=null;
+        head=current;
+        return;
+    }
+    public void deleteEnd(){
+        if(head==null){
+            System.out.println("list is empty");
+        }
+        if(head.next==null){
+            head=null;
+            return;
+        }
+        Node current;
+        current=head;
+        while(current.next.next!=null){
+            current=current.next;
+        }
+        current.next=null;
+        return;
+    }
+    public void printlist(){
+        if(head==null){
+            System.out.println("Linked list is empty");
+        }
+        else{
+        Node current=head;
+        while(current!=null){
+            System.out.print(current.data+"->");
+            current=current.next;
+        }
+        System.out.println("None");
+        }
+    }
+    public static void main(String[] args) {
+        Main obj=new Main();
+        
+        obj.insertBegin(20);
+        obj.insertBegin(5);
+        obj.insertEnd(25);
+        obj.insertAtPosition(33,1);
+        obj.printlist();
+        obj.deleteBeg();
+        obj.printlist();
+        obj.deleteEnd();
+        obj.printlist();
+    }
+}
