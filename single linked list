@@ -1,0 +1,60 @@
+// Node class
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+// Singly Linked List class
+class LinkedList {
+    Node head;
+
+    // Method to add a node at the end
+    public void add(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode; // If list is empty, new node becomes head
+        } else {
+            Node current = head;
+            while (current.next != null) { // Traverse to last node
+                current = current.next;
+            }
+            current.next = newNode; // Link last node to new node
+        }
+    }
+
+    // Method to print the linked list
+    public void printList() {
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + (current.next != null ? " -> " : ""));
+            current = current.next;
+        }
+        System.out.println(); // Newline after printing
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.add(40);
+
+        System.out.println("Singly Linked List:");
+        list.printList();  // Output: 10 -> 20 -> 30 -> 40
+    }
+}
